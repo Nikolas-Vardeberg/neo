@@ -2,7 +2,6 @@
 
 import { client } from "@/lib/prisma";
 import { currentUser } from "@clerk/nextjs/server";
-import { create } from "domain";
 
 export const onAuthenticateUser = async () => {
     try {
@@ -16,7 +15,7 @@ export const onAuthenticateUser = async () => {
             clerkid: user.id,
            },
            include: {
-            workspace: {
+            WorkSpace: {
                 where: {
                     User: {
                         clerkid: user.id
@@ -43,7 +42,7 @@ export const onAuthenticateUser = async () => {
                 subscription: {
                     create: {}
                 },
-                workspace: {
+                WorkSpace: {
                     create: {
                         name: ` ${user.firstName}'s workspace`,
                         type: "PERSONAL",
@@ -51,7 +50,7 @@ export const onAuthenticateUser = async () => {
                 },
             },
             include: {
-                workspace: {
+                WorkSpace: {
                     where: {
                         User: {
                             clerkid: user.id
@@ -74,5 +73,37 @@ export const onAuthenticateUser = async () => {
 
     } catch (error) {
         return { status: 500 }
+    }
+}
+
+export const getNotifications = async () => {
+    try {
+        const user = await currentUser();
+
+        if (!user) {
+            return { status: 404 }
+        }
+
+        const notifcations = await client.user.findUnique({
+           where: {
+            clerkid: user.id,
+           },
+           select: {
+            notification: true,
+            _count: {
+                select: {
+                    notification: true,
+                }
+            }
+           } 
+        })
+
+        if (notifcations && notifcations.notification.length > 0) {
+            return { status: 200, data: notifcations }
+        }
+
+        return { status: 404, data: [] }
+    } catch (error) {
+        return { status: 400, data: [] }
     }
 }
