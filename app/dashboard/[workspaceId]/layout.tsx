@@ -6,6 +6,7 @@ import {
     HydrationBoundary,
     QueryClient
 } from "@tanstack/react-query";
+import Sidebar from "@/components/global/sidebar";
 
 type Props = {
     params: { workspaceId: string }
@@ -49,6 +50,7 @@ export default async function Layout({ params: { workspaceId }, children }: Prop
     return(
         <HydrationBoundary state={dehydrate(query)}>
             <div className="flex h-screen w-screen">
+                <Sidebar activeWorkspaceId={workspaceId}  />
                 {children}
             </div>
         </HydrationBoundary>
