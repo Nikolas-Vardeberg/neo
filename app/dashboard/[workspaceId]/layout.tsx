@@ -51,7 +51,11 @@ export default async function Layout({ params: { workspaceId }, children }: Prop
         <HydrationBoundary state={dehydrate(query)}>
             <div className="flex h-screen w-screen">
                 <Sidebar activeWorkspaceId={workspaceId}  />
-                {children}
+                <div className="w-full pt-28 p-6 overflow-y-scroll overflow-x-hidden">
+                    <div className="mt-4">
+                        {children}
+                    </div>
+                </div>
             </div>
         </HydrationBoundary>
     )

@@ -44,7 +44,7 @@ export const onAuthenticateUser = async () => {
                 },
                 WorkSpace: {
                     create: {
-                        name: ` ${user.firstName}'s workspace`,
+                        name: `${user.firstName}'s workspace`,
                         type: "PERSONAL",
                     },
                 },
