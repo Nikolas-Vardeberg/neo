@@ -6,26 +6,26 @@ export const MENU_ITEMS = (
     {
         title: "Home",
         href: `/dashboard/${workspaceId}/home`,
-        icon: <Home />
+        icon: <Home className="text-[#707070]" />
     },
     {
         title: "My Library",
         href: `/dashboard/${workspaceId}/home`,
-        icon: <File />
+        icon: <File className="text-[#707070]" />
     },
     {
         title: "Notifications",
         href: `/dashboard/${workspaceId}/notifcations`,
-        icon: <Bell />
+        icon: <Bell className="text-[#707070]" />
     },
     {
         title: "Billing",
         href: `/dashboard/${workspaceId}/billing`,
-        icon: <Banknote />
+        icon: <Banknote className="text-[#707070]" />
     },
     {
         title: "Settings",
         href: `/dashboard/${workspaceId}/settings`,
-        icon: <Settings />
+        icon: <Settings className="text-[#707070]" />
     },
 ]

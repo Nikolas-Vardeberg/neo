@@ -7,6 +7,7 @@ import {
     QueryClient
 } from "@tanstack/react-query";
 import Sidebar from "@/components/global/sidebar";
+import GlobalHeader from "@/components/global/global-header";
 
 type Props = {
     params: { workspaceId: string }
@@ -52,6 +53,7 @@ export default async function Layout({ params: { workspaceId }, children }: Prop
             <div className="flex h-screen w-screen">
                 <Sidebar activeWorkspaceId={workspaceId}  />
                 <div className="w-full pt-28 p-6 overflow-y-scroll overflow-x-hidden">
+                    <GlobalHeader workspace={hasAccess.data.workspace} />
                     <div className="mt-4">
                         {children}
                     </div>
