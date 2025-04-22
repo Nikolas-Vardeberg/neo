@@ -7,7 +7,6 @@ import { usePathname, useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import { useMutationData, useMutationDataState } from "@/hooks/useMutationData";
 import { renameFolders } from "@/actions/workspace";
-import { Input } from "@/components/ui/input";
 
 type Props = {
     name: string;
