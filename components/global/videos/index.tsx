@@ -13,22 +13,6 @@ type Props = {
     workspaceId: string;
 }
 
-const video = {
-    User: {
-        firstname: "Nikolas",
-        lastname: "Vardeberg",
-        image: "none"
-    },
-    id: "vide123",
-    processing: false,
-    Folder: {
-        id: "folder41",
-        name: "Marketing videos",
-    },
-    createdAt: new Date(),
-    title: "Product DEMO",
-    source: "https://www.verio.no" 
-}
 
 const Videos = ({ folderId, videosKey, workspaceId }: Props) => {
     const { data: videoData } = userQueryData([videosKey], () => getAllUserVideos(folderId))
@@ -46,7 +30,19 @@ const Videos = ({ folderId, videosKey, workspaceId }: Props) => {
             <section
                 className={cn(videosStatus !== 200 ? "p-5" : "grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5")}
             >
-                <VideoCard workspaceId={workspaceId} {...video} />
+                {videosStatus === 200 ? (
+                    videos.map((video) => (
+                        <VideoCard 
+                            key={video.id}
+                            workspaceId={workspaceId}
+                            {...video}
+                        />
+                    ))
+                ): (
+                    <p className="text-[#BDBDBD]">
+                        No videos in workspace
+                    </p>
+                )}
             </section>
         </div>
     )

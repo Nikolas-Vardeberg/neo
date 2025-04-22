@@ -151,7 +151,7 @@ function SidebarProvider({
   )
 }
 
-function Sidebar({
+  function Sidebar({
   side = "left",
   variant = "sidebar",
   collapsible = "offcanvas",

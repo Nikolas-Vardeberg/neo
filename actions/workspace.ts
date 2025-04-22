@@ -279,3 +279,25 @@ export const getFolderInfo = async (folderId: string) => {
         return { status: 500, data: null }
     }
 }
+
+export const moveVideoLocation = async (videoId: string, workspaceId: string, folderId: string) => {
+    try {
+        const location = await client.video.update({
+            where: {
+                id: videoId
+            },
+            data: {
+                folderId: folderId || null,
+                workspaceId,
+            }
+        })
+
+        if (location) {
+            return { status: 200, data: "folder changed succesfully" }
+        }
+
+        return { status: 404, message: "workspace/folder not found" }
+    } catch (error) {
+        return { status: 500, message: "Something went wrong while moving the video" }
+    }
+}
