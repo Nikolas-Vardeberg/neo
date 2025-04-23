@@ -21,7 +21,7 @@ export const useMoveVideos = (videoId: string, currentWorkspace: string) => {
         id: string;
         name: string;
         createdAt: Date;
-        workspaceId: string | null
+        workspaceId: string | null;
     })[]
     | undefined
     >(undefined)

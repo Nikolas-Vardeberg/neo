@@ -29,10 +29,11 @@ const FormGenerator = ({
 }: Props) => {
     switch (inputType) {
         case "input":
-            <Label
+            return(
+                <Label
                 className="flex flex-col gap-2 text-[#9D9D9D]"
                 htmlFor={`input-${label}`}
-            >
+                >
                 {label && label}
                 <Input
                     id={`input-${label}`}
@@ -51,6 +52,7 @@ const FormGenerator = ({
                     )}
                 />
             </Label>
+        )
 
         case "select":
             return(

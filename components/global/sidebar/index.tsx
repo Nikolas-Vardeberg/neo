@@ -18,6 +18,8 @@ import { Button } from "@/components/ui/button";
 import Loader from "../loader";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import InfoBar from "../info-bar";
+import { useDispatch } from "react-redux";
+import { WORKSPACES } from "@/lib/redux/slices/workspace";
 
 type Props = {
     activeWorkspaceId: string;
@@ -26,6 +28,7 @@ type Props = {
 const Sidebar = ({ activeWorkspaceId }: Props) => {
     const router = useRouter();
     const pathname = usePathname();
+    const dispatch = useDispatch();
 
     const { data, isFetched } = userQueryData(["user-workspaces"], getWorkSpaces);
     const { data: notifcations } = userQueryData(["user-notifications"], getNotifications)
@@ -42,6 +45,10 @@ const Sidebar = ({ activeWorkspaceId }: Props) => {
     const currentWorkspace = workspace.WorkSpace.find(
         (s) => s.id === activeWorkspaceId
     )
+
+    if (isFetched && workspace) {
+        dispatch(WORKSPACES({ workspaces: workspace.WorkSpace }))
+    }
 
     const SidebarSection = (
         <div className="bg-[#111111] flex-none relative p-4 h-full w-[250px] flex flex-col gap-4 items-center overflow-hidden">
