@@ -43,4 +43,3 @@ next-env.d.ts
 # clerk configuration (can include secrets)
 /.clerk/
 .qodo
-components/global/ai-tools/index.tsx
