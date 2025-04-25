@@ -10,6 +10,8 @@ import { truncateString } from "@/lib/utils";
 import { Download } from "lucide-react";
 import TabMenu from "../../tabs";
 import AiTools from "../../ai-tools";
+import VideoTranscript from "../../video-transcript";
+import { TabsContent } from "@/components/ui/tabs";
 
 type Props = {
     videoId: string;
@@ -78,11 +80,15 @@ const VideoPreview = ({ videoId }: Props) => {
                     </div>
                 </div>
             </div>
-                    <div>
-                        <TabMenu defaultValue="all" triggers={["Ai tools", "Transcript", "Activity"]}>
-                            <AiTools videoId={videoId} trial={video.User?.trial!} plan={video.User?.subscription?.plan!}  />
-                        </TabMenu>
-                    </div>
+            <div>
+                <TabMenu defaultValue="all" triggers={["Ai tools", "Transcript", "Activity"]}>
+                    <AiTools videoId={videoId} trial={video.User?.trial!} plan={video.User?.subscription?.plan!}  />
+                    <VideoTranscript transcript={video.description!} />
+                    <TabsContent value="Activity">
+                        Make changes here.
+                    </TabsContent>
+                </TabMenu>
+            </div>
         </div>
     )
 }
